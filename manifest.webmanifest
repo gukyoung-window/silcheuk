@@ -1,0 +1,16 @@
+{
+  "name": "국영창호 접수처",
+  "short_name": "국영창호 접수처",
+  "description": "국영창호 샷시 실측 접수",
+  "start_url": "./?from=home",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F3F1ED",
+  "theme_color": "#F3F1ED",
+  "lang": "ko",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
