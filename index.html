@@ -21,6 +21,11 @@
   // 앱 주소 (구글 Apps Script 웹 앱). 새로 배포해 주소가 바뀌면 여기만 고치면 돼요.
   var APP = "https://script.google.com/macros/s/AKfycbyz7BXRokCGWjCM6T7XwmyXqIBW5A5ETdqUdYGtA0RII_i5ajN54VxLNX2J5gCMD2v3nQ/exec";
   var Q = new URLSearchParams(location.search);
+  // 업체 코드(?c=): 업체별 예상금액용. 한 번 받으면 이 기기에 기억
+  var CODE = (Q.get("c") || "").trim().toUpperCase();
+  try { if (CODE) localStorage.setItem("gy-c", CODE); else CODE = localStorage.getItem("gy-c") || ""; } catch (e) {}
+  if (CODE && !Q.get("c")) { Q.set("c", CODE); try { history.replaceState(null, "", "?" + Q.toString()); } catch (e) {} }
+  APP = APP + (CODE ? "?k=" + encodeURIComponent(CODE) : "");   // 구글이 c 파라미터를 막아서 앱에는 k로 넘김
   var STANDALONE = (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true || Q.get("from") === "home";
   // 홈 화면 아이콘으로 열었거나 ?go=1 이면 바로 앱으로
   if (STANDALONE || Q.get("go") === "1") location.replace(APP);
